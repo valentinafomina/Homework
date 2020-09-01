@@ -1,0 +1,27 @@
+dict_seasons = {1: "зима", 2: "зима", 3: "весна", 4: "весна", 5: "весна", 6: "лето", 7: "лето", 8: "лето", 9: "осень",
+                10: "осень", 11: "осень", 12: "зима"}
+month = int(input("Введите порядковый номер месяца (для определения через dict: "))
+print(f"Введенный месяц относится к сезону {dict_seasons.get(month)}")
+
+list_season = ("зима", "весна", "лето", "осень")
+user_month = int(input("Введите порядковый номер месяца (для определения через list): "))
+if user_month == 1 or 2 or 12:
+    season_index = 1
+elif user_month == 3 or 4 or 5:
+    season_index = 2
+elif user_month == 6 or 7 or 8:
+    season_index = 3
+else:
+    season_index = 4
+print(f"Введенный месяц относится к сезону {list_season[season_index]}")
+
+
+
+
+
+
+
+
+
+
+

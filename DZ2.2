@@ -1,0 +1,23 @@
+element_number = 4
+n = 0
+user_list = []
+while n < element_number:
+    user_el = (input(f"Введите элемент списка № {n + 1}: "))
+    user_list.append(user_el)
+    n = n + 1
+print(user_list)
+new_list = []
+el = 0
+while el < element_number:
+    if el < element_number - 1:
+        new_list.append(user_list[el + 1])
+    new_list.append(user_list[el])
+    el = el + 2
+print(new_list)
+
+
+
+
+
+
+

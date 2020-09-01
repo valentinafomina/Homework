@@ -1,0 +1,15 @@
+lines = int(input("Введите количество товарных позиций: "))
+n = 1
+product_name = []
+price = []
+quantity = []
+measure_unit = []
+dict_items = ["наименование", "цена", "количества", "единица измерения"]
+while n < lines + 1:
+    product_name.append(input(f"Введите наименование товара № {n}: "))
+    price.append(input(f"Введите цену товара № {n}: "))
+    quantity.append(input(f"Введите количество товара № {n}: "))
+    measure_unit.append(input(f"Введите диницу измерения товара № {n}: "))
+    n += 1
+product_dict = dict(наименование=product_name, цена=price, количество=quantity, единица_измерения=measure_unit)
+print(product_dict)
