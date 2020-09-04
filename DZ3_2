@@ -1,0 +1,11 @@
+user_data = ['имя', 'фамилия']
+
+
+def collect_data(names, surnames):
+    print(f"Имя: {name}; фамилия: {surname}")
+
+
+name = input(f"введите {user_data[0]}: ")
+surname = input(f"введите {user_data[1]}: )
+
+print(collect_data(name, surname))
