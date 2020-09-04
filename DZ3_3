@@ -1,0 +1,8 @@
+def my_func(arg1, arg2, arg3):
+    argument_list = [arg1, arg2, arg3]
+    argument_list.sort()
+    summa = argument_list[1] + argument_list[2]
+    return summa
+
+
+print(my_func(30, 20, 10))

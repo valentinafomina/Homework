@@ -1,0 +1,21 @@
+def divide():
+    a = int(input("Введите числитель: "))
+    b = int(input("Введите знаменатель: "))
+    try:
+        result = a / b
+    except ZeroDivisionError:
+        while b == 0:
+            b = (int(input("Знаменатель не может быть нулем. Введите знаменатель: ")))
+    result = a / b
+    return result
+
+
+print(divide())
+
+
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+def summa():
+    a = 0
+    user_item = ""
+    while user_item != "q":
+        user_input = (input("ведите любое количество чисел через пробел и нажмите Enter,\n или нажмите Q ля выхода "))
+        user_figures = user_input.split()
+        user_figures_int = []
+        i = 0
+        while i < len(user_figures):
+            user_item = (user_figures[i])
+            if user_item == "q":
+                break
+            user_figures_int.append(int(user_item))
+            i += 1
+        a += sum(user_figures_int)
+        print(f"Сумма введенных чисел равна {a}")
+
+
+summa()
+
