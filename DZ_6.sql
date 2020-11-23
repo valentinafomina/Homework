@@ -1,13 +1,14 @@
--- Д.З. 6 “Операторы, фильтрация, сортировка и ограничение. Агрегация данных”
+-- Г„.Г‡. 6 вЂњГЋГЇГҐГ°Г ГІГ®Г°Г», ГґГЁГ«ГјГІГ°Г Г¶ГЁГї, Г±Г®Г°ГІГЁГ°Г®ГўГЄГ  ГЁ Г®ГЈГ°Г Г­ГЁГ·ГҐГ­ГЁГҐ. ГЂГЈГ°ГҐГЈГ Г¶ГЁГї Г¤Г Г­Г­Г»ГµвЂќ
 
 -- 2. 
 
 use snet2910;
-
 select
-	firstname,
-	lastname,
-	(select count(*) talks from messages where to_user_id = 1 group by from_user_id order by talks desc limit 1) number_of_msgs
+	id,
+	(select count(*) talks from messages m where m.to_user_id = u.id and m.from_user_id in 
+		(select fr4.initiator_user_id from friend_requests fr4 where fr4.target_user_id = u.id and fr4.status = 'approved')) +
+	(select count(*) talks from messages m2 where m2.to_user_id = u.id and m2.from_user_id in 
+		(select fr5.target_user_id from friend_requests fr5 where fr5.initiator_user_id = u.id and fr5.status = 'approved')) msgs_from_friends
 from users u where u.id = 1;
 
 -- 3.
