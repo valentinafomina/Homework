@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 8. Recursion</title>
+</head>
+
+<body>
+    <script>
+        var val = parseInt(prompt("Введите число"))
+        var pow = parseInt(prompt("Введите степень, в которую нужно возвести в число"))
+        var orig_val = val
+        function power (val, pow) {
+            switch (pow) {
+                case 1: return (val); break;
+                default: return (power(val =val * orig_val, pow - 1));
+            }
+        }
+
+        alert("Результат вычсилений: " + power(val, pow));
+    </script>
+</body>
+
+</html>

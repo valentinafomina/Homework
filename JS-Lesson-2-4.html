@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+</head>
+
+<body>
+    <script>
+        var a = 10
+        var b = 15
+        switch (Math.sign(a-b)) {
+            case -1 : 
+                while (a < b) {
+                    document.write(a + " ");
+                    a++;
+                }
+            break;
+            default: document.write("Нельзя построить ряд между числами " + a + " и " + b + ".");
+        }
+    </script>
+</body>
+
+</html>
