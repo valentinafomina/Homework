@@ -11,25 +11,25 @@
 <body>
     <script>
         
-    var userNumber = prompt("Введите трехзначное число")
-    var result = {}    
+        var userNumber = prompt("Введите трехзначное число")
+        var result = {}
 
-    function parseMyNumber(number) {
-        if (number.length > 3) {
-        consol.log("Вы ввели слишком большое число"),
-        result = {}
+        function parseMyNumber(number) {
+            if (number.length > 3) {
+                console.log("Вы ввели слишком большое число"),
+                    result = {}
+            }
+            else {
+                return (
+                    result.hundreds = Math.floor(number / 100),
+                    result.tens = Math.floor((number / 10) % 10),
+                    result.ones = Math.floor(number % 10)
+                )
+            }
         }
-        else {
-            return (
-                result.hundreds = number[0],
-                result.tens = number[1],
-                result.ones = number[2]
-            )  
-        }  
-    }
 
-    parseMyNumber(userNumber);
-    consol.log(Object.values(result));
+        parseMyNumber(userNumber);
+        console.log(Object.values(result));
 
     </script>
 </body>
