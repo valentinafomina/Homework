@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <style>
+
+        div {
+            width: 400px; /* Перенос ячеек на новую строку за счет заданной ширины div'а */
+            height: 360px;
+        }
+
+        .cell {
+            border: solid black 1px;
+            width: 40px;
+            height: 40px;
+            float: left;
+        }
+
+        .td-1 {
+            border-color: transparent;
+            background-color: transparent;
+            text-align: center;
+        }
+
+    </style>
+
+    <script>
+        var div1 = document.createElement('div');
+        document.body.appendChild(div1);
+        var tbl = document.createElement('div');
+        div1.appendChild(tbl);
+
+
+        function drawBoard() {
+            for (var i = 0; i < 9; i++) {
+                for (var j = 0; j < 9; j++) {     
+                    var abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];       
+                    var cell = document.createElement('div');
+                    cell.classList.add('cell')
+                    tbl.appendChild(cell);
+                    (j == 0 && i != 0) ? cell.innerText = i : 
+                        (i == 0 && j != 0) ? cell.innerText = abc[j-1] : cell.innerText = ""; 
+                    (i == 0) ? cell.classList.add("td-1") :    
+                        (j == 0) ? cell.classList.add("td-1") :     
+                            ((i + j )% 2 == 0)? cell.style.backgroundColor = 'white' : cell.style.backgroundColor = 'black';
+                    } 
+                }
+            }
+        
+        drawBoard();
+
+
+    </script>
+
+</body>
+
+</html>
