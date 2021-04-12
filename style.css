@@ -32,6 +32,10 @@ td.cell{
 .food{
     background: #00d021;
 }
+
+.roadblock {
+    background: orange;
+}
 .snakeBody{
     background: #e5e5e5;
 }
@@ -43,4 +47,9 @@ td.cell{
 }
 .disabled:hover{
     background: #7c7c7c;
+}
+
+.scoreInfo {
+    font-style: italic;
+    color: orange;
 }
