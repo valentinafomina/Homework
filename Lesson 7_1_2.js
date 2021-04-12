@@ -6,6 +6,8 @@ const settings = {
     winFoodCount: 50,
 };
 
+
+
 const config = {
     settings,
     init(userSettings = {}) {
@@ -84,7 +86,7 @@ const map = {
         }
     },
 
-    render(snakePointsArray, foodPoint) {
+    render(snakePointsArray, foodPoint, roadblockPoint) {
         for (const cell of this.usedCells) {
             cell.className = 'cell';
         }
@@ -100,6 +102,11 @@ const map = {
         const foodCell = this.cells[`x${foodPoint.x}_y${foodPoint.y}`];
         foodCell.classList.add('food');
         this.usedCells.push(foodCell);
+
+        const roadblockCell = this.cells[`x${roadblockPoint.x}_y${roadblockPoint.y}`];
+        roadblockCell.classList.add('roadblock');
+        this.usedCells.push(roadblockCell);
+
     },
 };
 
@@ -141,25 +148,48 @@ const snake = {
         const lastBodyPoint = this.body[lastBodyIdx];
         const lastBodyPointClone = Object.assign({}, lastBodyPoint);
         this.body.push(lastBodyPointClone);
+        points++;
+        scoreInfo.innerText = "Ваш счёт: " + points;
     },
 
     getNextStepHeadPoint() {
         const firstPoint = this.getBody()[0];
 
-        switch(this.direction) {
+        switch (this.direction) {
             case 'up':
-                return {x: firstPoint.x, y: firstPoint.y - 1};
+                return { x: firstPoint.x, y: firstPoint.y - 1 };
             case 'right':
-                return {x: firstPoint.x + 1, y: firstPoint.y};
+                return { x: firstPoint.x + 1, y: firstPoint.y };
             case 'down':
-                return {x: firstPoint.x, y: firstPoint.y + 1};
+                return { x: firstPoint.x, y: firstPoint.y + 1 };
             case 'left':
-                return {x: firstPoint.x - 1, y: firstPoint.y};
+                return { x: firstPoint.x - 1, y: firstPoint.y };
         }
     },
 };
 
 const food = {
+    x: null,
+    y: null,
+
+    getCoordinates() {
+        return {
+            x: this.x,
+            y: this.y,
+        };
+    },
+
+    setCoordinates(point) {
+        this.x = point.x;
+        this.y = point.y;
+    },
+
+    isOnPoint(point) {
+        return this.x === point.x && this.y === point.y;
+    },
+};
+
+const roadblock = {
     x: null,
     y: null,
 
@@ -204,11 +234,18 @@ const status = {
     },
 };
 
+var points = 0;
+
+const scoreInfo = document.getElementById('score');
+scoreInfo.innerText = "Ваш счет: " + points;
+
 const game = {
     config,
     map,
+    scoreInfo,
     snake,
     food,
+    roadblock,
     status,
     tickInterval: null,
 
@@ -229,16 +266,20 @@ const game = {
         this.reset();
     },
 
+
+
     reset() {
         this.stop();
         this.snake.init(this.getStartSnakeBody(), 'up');
         this.food.setCoordinates(this.getRandomFreeCoordinates());
+        this.roadblock.setCoordinates(this.getRandomFreeCoordinates());
         this.render();
     },
 
     play() {
         this.status.setPlaying();
         this.tickInterval = setInterval(() => this.tickHandler(), 1000 / this.config.getSpeed());
+        setInterval(() => this.roadblockMover(), 5000);
         this.setPlayButton('Стоп');
     },
 
@@ -272,13 +313,18 @@ const game = {
         this.render();
     },
 
+    roadblockMover() {
+        this.roadblock.setCoordinates(this.getRandomFreeCoordinates());
+    },
+
     canMakeStep() {
         const nextHeadPoint = this.snake.getNextStepHeadPoint();
         return !this.snake.isOnPoint(nextHeadPoint) &&
             nextHeadPoint.x < this.config.getColsCount() &&
             nextHeadPoint.y < this.config.getRowsCount() &&
             nextHeadPoint.x >= 0 &&
-            nextHeadPoint.y >= 0;
+            nextHeadPoint.y >= 0 &&
+            !this.roadblock.isOnPoint(this.snake.getNextStepHeadPoint())
     },
 
     isGameWon() {
@@ -327,7 +373,7 @@ const game = {
     },
 
     render() {
-        this.map.render(this.snake.getBody(), this.food.getCoordinates());
+        this.map.render(this.snake.getBody(), this.food.getCoordinates(), this.roadblock.getCoordinates());
     },
 
     playClickHandler() {
@@ -379,4 +425,4 @@ const game = {
     },
 };
 
-game.init({speed: 5});
+game.init({ speed: 5 });
