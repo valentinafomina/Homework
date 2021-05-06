@@ -1,10 +1,14 @@
 from django.shortcuts import render
+from .models import Product, ProductCategory
 
 
 def main(request):
+    products = Product.objects.all()[:4]
+
     context = {
         'title': 'Очень удобные стулья',
-        'topic': 'Тренды'
+        'topic': 'Тренды',
+        'products': products
     }
     return render(request, 'mainapp/index.html', context=context)
 
@@ -12,11 +16,11 @@ def main(request):
 def products(request):
 
     links_menu = {'links': [
-            {'href': 'index', 'name': 'все'},
-            {'href': 'index', 'name': 'дом'},
-            {'href': 'index', 'name': 'офис'},
-            {'href': 'index', 'name': 'модерн'},
-            {'href': 'index', 'name': 'классика'}
+            {'href': 'mainapp:index', 'name': 'все'},
+            {'href': 'mainapp:index', 'name': 'дом'},
+            {'href': 'mainapp:index', 'name': 'офис'},
+            {'href': 'mainapp:index', 'name': 'модерн'},
+            {'href': 'mainapp:index', 'name': 'классика'}
         ]}
     return render(request, 'mainapp/products.html', context=links_menu)
 
