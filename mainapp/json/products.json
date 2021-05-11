@@ -1,0 +1,11 @@
+[
+  {
+    "category": "Chairs",
+    "name": "Chair",
+    "image": "products_img/chair.jpg",
+    "short_desc": "Cosy stylish armchair",
+    "description": "",
+    "price": "10000.00",
+    "quantity": 10
+  }
+]
