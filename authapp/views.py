@@ -13,9 +13,9 @@ def login(request):
         password = request.POST['password']
 
         user = auth.authenticate(username=username, password=password)
-        if user and user.is_active():
+        if user and user.is_active:
             auth.login(request, user)
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('mainapp:index'))
 
     context = {'title': title, 'login_form':login_form}
     return render(request, 'authapp/login.html', context=context)
@@ -23,7 +23,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('mainapp:index'))
 
 
 def register(request):
