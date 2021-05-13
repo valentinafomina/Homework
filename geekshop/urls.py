@@ -18,10 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from . import settings
 from mainapp import urls
+from mainapp.views import contacts, main
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(urls), name='index')
+    path('', include(urls), name='index'),
+    path('contacts/', contacts, name='contacts'),
+    path('products/', include(urls, namespace='products')),
+    path('auth/', include('authapp.urls', namespace='auth'))
 ]
 
 app_name = "geekshop"

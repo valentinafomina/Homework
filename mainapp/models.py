@@ -4,7 +4,11 @@ from django.db import models
 
 
 class ProductCategory(models.Model):
-    name = models.CharField(max_length=64, unique=True, verbose_name='имя')
+    name = models.CharField(
+        max_length=64,
+        unique=True,
+        verbose_name='имя'
+    )
 
     description = models.TextField(
         verbose_name='описание',
@@ -27,7 +31,8 @@ class Product(models.Model):
     category = models.ForeignKey(
         ProductCategory,
         on_delete=models.CASCADE,
-        verbose_name='категория'
+        verbose_name='категория',
+        to_field='name'
     )
     name = models.CharField(
         verbose_name='имя продукта',
@@ -35,7 +40,7 @@ class Product(models.Model):
     )
     image = models.ImageField(
        upload_to='products_img',
-        blank=True
+       blank=True
     )
     short_desc = models.CharField(
         max_length=256,
