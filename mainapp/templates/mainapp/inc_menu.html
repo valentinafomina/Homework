@@ -3,7 +3,14 @@
         <a href="{% url 'mainapp:index' %}" class="logo"></a>
         <ul class="menu">
             <li><a href="{% url 'mainapp:index' %}">домой</a></li>
-            <li><a href="{% url 'mainapp:products' %}" class="active">продукты</a></li>
+            <li>
+              <a href="{% url 'products:index' %}"
+                 class="{% if request.resolver_match.namespace == 'products' %}
+                          active
+                        {% endif %}">
+                продукты
+              </a>
+            </li>
             <li><a href="{% url 'mainapp:contact' %}">контакты</a></li>
             {% if user.is_authenticated%}
                 <li>
