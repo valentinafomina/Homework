@@ -1,11 +1,12 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 
-{% block header %}
-	<div class="hero">
-		<h1>наши контакты</h1>
+{% block main_slider %}
+<div class="container">
+	<div class="hero-white">
+		{% include 'mainapp/inc_menu.html' %}
 	</div>
-{% endblock %}
+	{% endblock %}
 
 {% block content %}
 	<div class="location">
