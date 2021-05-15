@@ -25,7 +25,8 @@ urlpatterns = [
     path('', include(urls), name='index'),
     path('contacts/', contacts, name='contacts'),
     path('products/', include(urls, namespace='products')),
-    path('auth/', include('authapp.urls', namespace='auth'))
+    path('auth/', include('authapp.urls', namespace='auth')),
+    path('basket/', include('basketapp.urls', namespace='basket'))
 ]
 
 app_name = "geekshop"
