@@ -19,5 +19,7 @@ from mainapp import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(urls))
+    path('', include(urls), name='index')
 ]
+
+app_name = "geekshop"
