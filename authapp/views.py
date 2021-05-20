@@ -36,7 +36,7 @@ def logout(request):
 
 
 def register(request):
-    title = '???????????'
+    title = 'регистрация'
 
     if request.method:
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
@@ -53,7 +53,7 @@ def register(request):
 
 
 def edit(request):
-    title = '??????????????'
+    title = 'редактировать'
 
     if request.method:
         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
