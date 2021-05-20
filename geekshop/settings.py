@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp',
     'authapp',
-    'basketapp'
+    'basketapp',
+    'adminapp'
 ]
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
@@ -124,7 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "geekshop", "mainapp", "static"),
+    os.path.join(BASE_DIR, "geekshop", "static"),
 )
 
 # Default primary key field type
